@@ -1,0 +1,555 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap");
+
+:root {
+  --dark-red: hsl(337, 77%, 15%);
+  --dark-pink: #A63760;
+  --black: #212529;
+  --red: #DB617D;
+  --white: #ffffff;
+  --light-color: #6c757d;
+  --light-white: #f8f9fa;
+  --light-background: #FFA5AB;
+  --border-custom: 0.1rem solid var(--black);
+  --box-shadow-custom: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  --hover-background: var(--red);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+*::selection {
+  background-color: var(--dark-red);
+  color: var(--white);
+}
+
+*::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--light-white);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--dark-red);
+  border-radius: 10px;
+}
+
+body {
+  background-color: var(--light-background);
+  line-height: 1.7;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+section {
+  padding: 4rem 2rem;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--black);
+  text-transform: uppercase;
+  font-size: 5rem;
+  letter-spacing: 1.5px;
+}
+
+.btn,
+.option-btn,
+.delete-btn,
+.white-btn {
+  display: inline-block;
+  margin: 1.5rem;
+  padding: 1.5rem 4rem;
+  cursor: pointer;
+  color: var(--white);
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  text-transform: capitalize;
+  text-align: center;
+  box-shadow: var(--box-shadow-custom);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.white-btn,
+.btn {
+  background-color: var(--dark-red);
+}
+
+.option-btn {
+  background-color: var(--dark-pink);
+}
+
+.delete-btn {
+  background-color: var(--red);
+}
+
+.btn:hover,
+.option-btn:hover,
+.delete-btn:hover {
+  background-color: var(--black);
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+}
+
+.white-btn:hover {
+  background-color: var(--white);
+  color: var(--black);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+}
+
+.empty {
+  padding: 2rem;
+  text-align: center;
+  border: var(--border-custom);
+  background-color: var(--white);
+  color: var(--red);
+  font-size: 2.5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow-custom);
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow-custom);
+  transition: background-color 0.3s ease;
+}
+
+.header .flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header .flex .logo {
+  font-size: 3.5rem;
+  color: var(--black);
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.header .flex .logo span {
+  color: var(--dark-red);
+}
+
+.header .flex .navbar a {
+  margin: 0  2rem;
+  color: var(--black);
+  font-size: 2.2rem;
+  text-transform: capitalize;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.header .flex .navbar a:hover {
+  color: var(--dark-red);
+  text-decoration: underline;
+}
+
+.header .flex .icons div {
+  margin-left: 2rem;
+  font-size: 2.5rem;
+  color: var(--black);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.header .flex .icons div:hover {
+  color: var(--dark-red);
+}
+
+.header .flex .account-box {
+  position: absolute;
+  top: 120%;
+  right: 2rem;
+  width: 35rem;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow-custom);
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  border: var(--border-custom);
+  display: none;
+  animation: fadeIn 0.3s linear;
+}
+
+.header .flex .account-box.show-account {
+  display: block;
+}
+
+.header .flex .account-box p {
+  font-size: 2.2rem;
+  color: var(--black);
+  margin-bottom: 1.5rem;
+}
+
+.header .flex .account-box p span {
+  color: var(--dark-red);
+}
+
+.header .flex .account-box .delete-btn {
+  margin-top: 0;
+}
+
+#menu-btn {
+  display: none;
+}
+
+.dashboard .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+}
+
+.dashboard .box-container .box {
+  background: linear-gradient(145deg, var(--light-background), #e0e0e0);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1), 0 -8px 20px rgba(255, 255, 255, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard .box-container .box:hover {
+  transform: translateY(-10px) rotate(1deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2), 0 -12px 30px rgba(255, 255, 255, 0.6);
+}
+
+.dashboard .box-container .box:nth-child(odd) {
+  grid-column: span 2;
+}
+
+.dashboard .box-container .box:nth-child(3) {
+  grid-row: span 2;
+  background: linear-gradient(145deg, var(--dark-red), var(--light-background));
+}
+
+.dashboard .box-container .box h3 {
+  font-size: 4.5rem;
+  color: var(--dark-red);
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard .box-container .box:hover h3 {
+  color: var(--white);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+.dashboard .box-container .box p {
+  font-size: 1.8rem;
+  text-transform: capitalize;
+  margin-top: 1rem;
+  padding: 1rem;
+  color: var(--black);
+  font-weight: 500;
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+.dashboard .box-container .box:hover p {
+  color: var(--white);
+  opacity: 0.8;
+  transform: translateY(5px);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 20px;
+}
+
+.add-products form {
+  background-color: var(--white);
+  text-align: center;
+  padding: 3rem;
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow-custom);
+  max-width: 65rem;
+  margin : 0 auto;
+  transition: all 0.3s ease;
+}
+
+.add-products form:hover {
+  transform: scale(1.02);
+}
+
+.add-products form h3 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: var(--dark-red);
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.add-products form .box {
+  width: 100%;
+  background-color: var(--white);
+  border-radius: 1rem;
+  margin: 1rem 0;
+  padding: 1.5rem 1.6rem;
+  color: var(--black);
+  font-size: 2rem;
+  box-shadow: var(--box-shadow-custom);
+  transition: background-color 0.3s ease;
+}
+
+.add-products form .box:hover {
+  background-color: var(--hover-background);
+  color: var(--white);
+}
+
+.show-products .box-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.show-products .box-container .box {
+  flex: 1 1 320px;
+  background-color: var(--white);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: var(--box-shadow-custom);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.show-products .box-container .box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.show-products .box-container .box img {
+  height: 25rem;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.show-products .box-container .box img:hover {
+  transform: scale(1.05);
+}
+
+.show-products .box-container .box .name {
+  font-size: 2.4rem;
+  padding: 1rem 0;
+  color: var(--black);
+}
+
+.show-products .box-container .box .price {
+  font-size: 3rem;
+  padding: 1rem 0;
+  color: var(--dark-red);
+}
+
+.edit-product {
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1200;
+}
+
+.edit-product form {
+  width: 60rem;
+  height: auto;
+  overflow-y: auto;
+  padding: 3rem;
+  text-align: center;
+  border-radius: 1rem;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow-custom);
+}
+
+.edit-product form img {
+  height: 35rem;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+}
+
+.edit-product form .box {
+  width: 100%;
+  background-color: var(--white);
+  border-radius: 1rem;
+  margin: 1rem 0;
+  padding: 1.5rem 1.6rem;
+  color: var(--black);
+  font-size: 2rem;
+  box-shadow: var(--box-shadow-custom);
+  transition: background-color 0.3s ease;
+}
+
+.edit-product form .box:hover {
+  background-color: var(--hover-background);
+  color: var(--white);
+}
+
+.edit-product form .btn,
+.edit-product form .option-btn {
+  width: 40%;
+  font-size: 2rem;
+  padding: 1.5rem 3rem;
+  border-radius: 0.5rem;
+  background-color: var(--dark-red);
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-product form .btn:hover,
+.edit-product form .option-btn:hover {
+  background-color: var(--hover-background);
+}
+
+.orders .box-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.orders .box-container .box {
+  background-color: var(--white);
+  padding: 3rem;
+  box-shadow: var(--box-shadow-custom);
+  border-radius: 0.5rem;
+  max-height: 300px;
+  overflow-y: auto;
+  transition: border 0.3s;
+}
+
+.orders .box-container .box .complete {
+  border:  2px solid green;
+}
+
+.orders .box-container .box .pending {
+  border: 2px solid red;
+}
+
+.orders .box-container .box p {
+  padding: 1.5rem;
+  font-size: 2rem;
+  color: var(--light-color);
+  text-transform: capitalize;
+  line-height: 1.4;
+  box-shadow: var(--box-shadow-custom);
+  margin-bottom: 1.5rem;
+}
+
+.orders .box-container .box p span {
+  color: var(--dark-red);
+}
+
+.orders .box-container .box form {
+  text-align: center;
+}
+
+.orders .box-container .box form select {
+  width: 100%;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow-custom);
+  padding: 1.5rem 1.6rem;
+  font-size: 1.8rem;
+  color: var(--black);
+  text-transform: capitalize;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 800px) {
+  html {
+    font-size: 50%;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .edit-product form {
+    width: auto;
+  }
+
+  .edit-product form .btn,
+  .edit-product form .option-btn {
+    width: auto;
+  }
+
+  #menu-btn {
+    display: inline-block;
+  }
+
+  .header .flex .navbar {
+    position: absolute;
+    top: 99%;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    border-bottom: var(--border-custom);
+    border-top: var(--border-custom);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+
+  .header .flex .navbar a {
+    display: block;
+    margin: 2rem 0;
+    text-align: center;
+  }
+}
