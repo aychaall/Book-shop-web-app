@@ -2,8 +2,10 @@
 
 ##Whispering Pages - Book Store CRUD Application
 
+
 ##Overview
-Whispering Pages is a CRUD (Create, Read, Update, Delete) web application designed to manage a book store. Built using a stack of PHP, MySQL, JavaScript, CSS, and HTML, it allows users to browse books, add them to a shopping cart, and complete transactions. Admin users can manage inventory, orders, and users.
+
+Whispering Pages is a CRUD (Create, Read, Update, Delete) web application that manages a book store. Built using PHP, MySQL, JavaScript, CSS, and HTML, it allows users to browse books, add them to a shopping cart, and complete transactions. Admin users can manage inventory, orders, and users.
 
 #Features
 User Authentication:
@@ -19,7 +21,7 @@ Delete: Remove books from the inventory (Admins only).
 Shopping Cart:
 
 Users can add books to their shopping cart.
-Cart displays a summary of selected books with their prices and quantities.
+The cart displays a summary of selected books with their prices and quantities.
 Checkout system (optional to integrate with a payment gateway).
 Order Management:
 
